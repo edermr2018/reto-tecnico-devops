@@ -5,12 +5,12 @@ variable "environment" {
 
 variable "role_name" {
   type        = string
-  description = "Nombre del rol IAM para las instancias EC2 o Nodos de EKS"
-}
+  description = "Nombre del rol IAM para las instancias EC2 o Nodos de EC2"
+} 
 
 variable "role_description" {
   type        = string
-  description = "Rol IAM para las instancias EC2 o Nodos de EKS en el entorno ${var.environment}"
+  description = "Rol IAM para las instancias EC2 o Nodos de EC2 en el entorno ${var.environment}"
 }
 
 variable "max_session_duration" {

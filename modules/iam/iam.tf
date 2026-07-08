@@ -2,7 +2,7 @@
 # 1. ROL PARA EC2 / WORKER NODES
 # ==========================================
 resource "aws_iam_role" "this" {
-  name = "${var.role_name}-${var.environment}-worker-node-role"
+  name = "${var.role_name}-${var.environment}-ec2"
   description = var.role_description
   max_session_duration = var.max_session_duration
   assume_role_policy = var.assume_role_policy
@@ -30,7 +30,7 @@ resource "aws_iam_role_policy_attachment" "node_AmazonEC2ContainerRegistryReadOn
 # Perfil de instancia para cuando usemos EC2 tradicionales
 resource "aws_iam_instance_profile" "node_profile" {
   name = "${var.environment}-worker-node-profile"
-  role = aws_iam_role.node_role.name
+  role = aws_iam_role.this.name
 }
 
 # ==========================================
