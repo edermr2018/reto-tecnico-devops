@@ -1,6 +1,7 @@
 variable "environment" {
   type        = string
   description = "Nombre del entorno (ej. stage, prod)"
+  default     = "stage"
 }
 
 variable "vpc_id" {
