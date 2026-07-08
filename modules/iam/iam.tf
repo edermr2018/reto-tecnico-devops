@@ -2,7 +2,7 @@
 # 1. ROL PARA EC2 / WORKER NODES
 # ==========================================
 resource "aws_iam_role" "this" {
-  name = "${var.role_name}-${var.environment}-ec2"
+  name = "${var.role_name}-${var.environment}-reto"
   description = var.role_description
   max_session_duration = var.max_session_duration
   assume_role_policy = var.assume_role_policy
