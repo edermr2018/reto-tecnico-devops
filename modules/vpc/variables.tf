@@ -7,13 +7,13 @@ variable "name" {
 }
 
 variable "environment" {
-  description = "Entorno de despliegue (dev, staging, prod)"
+  description = "Entorno de despliegue (dev, stage, prod)"
   type        = string
-  default     = "dev"
+  default     = "stage"
 
   validation {
-    condition     = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "El entorno debe ser: dev, staging o prod."
+    condition     = contains(["dev", "stage", "prod"], var.environment)
+    error_message = "El entorno debe ser: dev, stage o prod."
   }
 }
 
