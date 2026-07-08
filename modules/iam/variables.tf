@@ -10,7 +10,6 @@ variable "role_name" {
 
 variable "role_description" {
   type        = string
-  description = "Rol IAM para las instancias EC2 o Nodos de EC2 en el entorno ${var.environment}"
 }
 
 variable "max_session_duration" {
