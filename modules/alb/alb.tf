@@ -36,7 +36,7 @@ resource "aws_lb" "this" {
   tags = merge(var.tags, { Name = "${var.environment}-alb" })
 }
 
-# Listener HTTP por defecto (Retorna un 404 fijo hasta que le peguemos el EC2 o ECS)
+# Listener HTTP por defecto (Retorna un 404 fijo hasta que le peguemos el EC2 o EKS)
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.this.arn
   port              = "80"
