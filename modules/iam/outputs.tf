@@ -4,7 +4,7 @@ output "node_role_arn" {
 }
 
 output "instance_profile_name" {
-  value       = aws_iam_instance_profile.node_profile.name
+  value       = var.create_eks_worker_policies ? aws_iam_instance_profile.node_profile[0].name : null
   description = "Nombre del Instance Profile para EC2"
 }
 
