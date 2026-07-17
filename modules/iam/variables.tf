@@ -12,11 +12,6 @@ variable "role_description" {
   type        = string
 }
 
-variable "create_eks_worker_policies" {
-  type        = bool
-  default     = false
-  description = "Flag para habilitar la creación de políticas para los nodos worker de EKS"
-}
 
 variable "max_session_duration" {
   type        = number
@@ -36,10 +31,30 @@ variable "assume_role_policy" {
   description = "Política de asunción de rol para el rol IAM"
 }
 
-variable "create_eks_roles" {
+# -----------------------------------------------------------------------------
+# EKS WORKER NODE (opcional) — solo actívalo si este rol es para nodos EC2 de EKS
+# -----------------------------------------------------------------------------
+
+variable "create_eks_worker_policies" {
   type        = bool
   default     = false
-  description = "Flag para habilitar la creación de roles para EKS"
+  description = "Adjunta AmazonEKSWorkerNodePolicy + AmazonEKS_CNI_Policy + AmazonEC2ContainerRegistryReadOnly y crea un Instance Profile. Solo para roles de worker nodes de EKS sobre EC2."
+}
+
+# -----------------------------------------------------------------------------
+# EKS CLUSTER / CONTROL PLANE (opcional, rol independiente del principal)
+# -----------------------------------------------------------------------------
+
+variable "create_eks_cluster_role" {
+  type        = bool
+  default     = false
+  description = "Crea un rol adicional para el control plane de EKS, independiente del rol principal"
+}
+
+variable "eks_cluster_role_name" {
+  type        = string
+  default     = ""
+  description = "Nombre del rol del control plane EKS. Si se deja vacío, se usa '<role_name>-eks-cluster'."
 }
 
 variable "tags" {

@@ -1,8 +1,8 @@
 # ==========================================
-# 1. ROL PARA EC2 / WORKER NODES
+# ROL PRINCIPAL — genérico, sirve para EC2, worker nodes, o cualquier otro caso
 # ==========================================
 resource "aws_iam_role" "this" {
-  name = "${var.role_name}-${var.environment}-reto"
+  name = var.role_name
   description = var.role_description
   max_session_duration = var.max_session_duration
   assume_role_policy = var.assume_role_policy
@@ -38,8 +38,8 @@ resource "aws_iam_instance_profile" "node_profile" {
 # 2. ROL PARA EL CONTROL PLANE DE EKS (Condicional)
 # ==========================================
 resource "aws_iam_role" "eks_cluster_role" {
-  count = var.create_eks_roles ? 1 : 0
-  name  = "${var.role_name}-role"
+  count = var.create_eks_cluster_role ? 1 : 0
+  name  = var.eks_cluster_role_name != "" ? var.eks_cluster_role_name : "${var.role_name}-eks-cluster"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -58,7 +58,7 @@ resource "aws_iam_role" "eks_cluster_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "eks_AmazonEKSClusterPolicy" {
-  count      = var.create_eks_roles ? 1 : 0
+  count      = var.create_eks_cluster_role ? 1 : 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks_cluster_role[0].name
 }

@@ -9,6 +9,6 @@ output "instance_profile_name" {
 }
 
 output "eks_cluster_role_arn" {
-  value       = var.create_eks_roles ? aws_iam_role.eks_cluster_role[0].arn : null
+  value       = var.create_eks_cluster_role ? aws_iam_role.eks_cluster_role[0].arn : null
   description = "ARN del rol del cluster EKS"
 }
