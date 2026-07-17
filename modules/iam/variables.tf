@@ -12,6 +12,12 @@ variable "role_description" {
   type        = string
 }
 
+variable "create_eks_worker_policies" {
+  type        = bool
+  default     = false
+  description = "Flag para habilitar la creación de políticas para los nodos worker de EKS"
+}
+
 variable "max_session_duration" {
   type        = number
   default     = 3600

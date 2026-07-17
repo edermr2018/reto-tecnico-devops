@@ -29,7 +29,8 @@ resource "aws_iam_role_policy_attachment" "node_AmazonEC2ContainerRegistryReadOn
 
 # Perfil de instancia para cuando usemos EC2 tradicionales
 resource "aws_iam_instance_profile" "node_profile" {
-  name = "${var.environment}-worker-node-profile"
+  count = var.create_eks_worker_policies ? 1 : 0
+  name = "${var.role_name}-profile"
   role = aws_iam_role.this.name
 }
 
@@ -38,7 +39,7 @@ resource "aws_iam_instance_profile" "node_profile" {
 # ==========================================
 resource "aws_iam_role" "eks_cluster_role" {
   count = var.create_eks_roles ? 1 : 0
-  name  = "${var.environment}-eks-cluster-role"
+  name  = "${var.role_name}-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
