@@ -1,0 +1,35 @@
+# Terraform local state (nunca debería existir aquí, pero por si acaso)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Directorios locales de Terraform
+**/.terraform/*
+.terraform/
+
+# Archivos de crash
+crash.log
+crash.*.log
+
+# Variables con datos sensibles (si alguna vez pruebas el módulo localmente)
+*.tfvars
+*.tfvars.json
+# Si quieres versionar ejemplos de tfvars sin datos reales, usa esta excepción:
+!example.tfvars
+
+# Archivos de override (para pruebas locales, nunca deberían commitearse)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Planes guardados
+*.tfplan
+*.plan
+
+# CLI config con credenciales
+.terraformrc
+terraform.rc
+
+# macOS
+.DS_Store
