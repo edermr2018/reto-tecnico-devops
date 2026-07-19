@@ -17,19 +17,16 @@ variable "force_destroy" {
 variable "acl" {
     description = "The ACL to apply to the S3 bucket"
     type        = string
-    default     = "private"
 }
 
 variable "enable_versioning" {
     description = "A boolean that indicates whether versioning should be enabled for the S3 bucket"
     type        = bool
-    default     = false
 }
 
 variable "encryption_algorithm" {
     description = "The algorithm to use for server-side encryption"
     type        = string
-    default     = "AES256"
 }
 
 variable "block_public_policy" {
@@ -72,4 +69,10 @@ variable "enable_versioning" {
     description = "A boolean that indicates whether versioning should be enabled for the S3 bucket"
     type        = bool
     default     = false
+}
+
+variable "bucket_policy" {
+    description = "A JSON string that represents the bucket policy to apply to the S3 bucket"
+    type        = string
+    default     = ""
 }
